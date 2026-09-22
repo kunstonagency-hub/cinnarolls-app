@@ -662,3 +662,14 @@ body {
   font-size: 0.8rem;
   font-weight: bold;
 }
+
+* {
+  box-sizing: border-box;
+}
+body, html {
+  overflow-x: hidden; /* Evita el desplazamiento horizontal no deseado */
+  max-width: 100vw;
+}
+input, select, textarea, .card {
+  max-width: 100%;
+}
