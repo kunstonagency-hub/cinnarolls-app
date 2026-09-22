@@ -1,0 +1,664 @@
+/* src/index.css */
+:root {
+  --color-primario: #F25197;
+  --color-texto-blanco: #FFFFFF;
+  --color-fondo-claro: #F4F5F7;
+  --color-texto-oscuro: #333333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--color-fondo-claro);
+  color: var(--color-texto-oscuro);
+}
+
+.navbar {
+  background-color: var(--color-primario);
+  color: var(--color-texto-blanco);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.btn-primario {
+  background-color: var(--color-primario);
+  color: var(--color-texto-blanco);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primario:hover {
+  opacity: 0.85;
+}
+
+/* Contenedor principal para las vistas */
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* Estilos para la tabla de horarios */
+.tabla-responsive {
+  overflow-x: auto;
+}
+
+.tabla-horarios {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: var(--color-texto-blanco);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.tabla-horarios th, .tabla-horarios td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tabla-horarios th {
+  background-color: #f8fafc;
+  color: var(--color-texto-oscuro);
+  font-weight: 600;
+}
+
+.tabla-horarios tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Resaltar días libres usando el color de la empresa */
+.libre {
+  background-color: #fdf2f8;
+  color: var(--color-primario);
+  font-weight: bold;
+}
+
+/* Estilos para el Módulo de Producción */
+.grid-produccion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 1rem;
+}
+
+.card-produccion {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid var(--color-primario);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-header h4 {
+  margin: 0;
+  color: var(--color-primario);
+  font-size: 1.2rem;
+}
+
+.badge-nota {
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.texto-items {
+  color: #4b5563;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+.encargados-box {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.encargados-box strong {
+  color: #1f2937;
+}
+
+/* --- ESTILOS DEL HORARIO --- */
+.horario-container {
+  margin-top: 20px;
+}
+
+/* Tabla Desktop */
+.tabla-desktop {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.tabla-horarios {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.tabla-horarios th,
+.tabla-horarios td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.9rem;
+}
+
+.tabla-horarios th {
+  background-color: #fafafa;
+  color: #374151;
+  font-weight: 600;
+}
+
+.nombre-empleado {
+  font-weight: bold;
+  color: #1f2937;
+  text-align: left;
+  padding-left: 18px !important;
+}
+
+.badge-libre {
+  background-color: #ffe4e6;
+  color: #e11d48;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.badge-turno {
+  color: #374151;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* Ocultar la versión móvil por defecto en computadoras */
+.cards-horario-mobile {
+  display: none;
+}
+
+/* --- REGLAS MÓVILES (Pantallas menores a 768px) --- */
+@media (max-width: 768px) {
+  /* Ocultar tabla rígida */
+  .tabla-desktop {
+    display: none;
+  }
+
+  /* Mostrar vista de tarjetas tipo App */
+  .cards-horario-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 15px;
+  }
+
+  .card-empleado-horario {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+  }
+
+  .card-empleado-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f4f4f5;
+  }
+
+  .avatar-icon {
+    background: #fdf2f8;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .card-empleado-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #111827;
+    font-weight: 700;
+  }
+
+  .grid-dias-mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .item-dia-mobile {
+    background: #f9fafb;
+    padding: 8px 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid #f3f4f6;
+  }
+
+  .item-dia-mobile.libre {
+    background: #fff1f2;
+    border-color: #ffe4e6;
+  }
+
+  .nombre-dia {
+    font-size: 0.72rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}
+
+/* --- ESTILOS MÓDULO DE ALERTAS --- */
+.form-nueva-alerta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.input-alerta {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.input-alerta:focus {
+  border-color: var(--color-primario);
+}
+
+.container-alertas {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-alerta {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #f59e0b; /* Naranja para tareas pendientes */
+}
+
+.card-alerta.obligatoria {
+  border-left-color: #ef4444; /* Rojo para obligatorio */
+}
+
+.card-alerta.completada {
+  border-left-color: #10b981; /* Verde completado */
+  opacity: 0.85;
+  background: #f9fafb;
+}
+
+.alerta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.alerta-titulo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alerta-titulo-box h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1f2937;
+}
+
+.badge-obligatorio {
+  background-color: #fee2e2;
+  color: #dc2626;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+
+.alerta-desc {
+  color: #4b5563;
+  margin: 10px 0;
+  font-size: 0.95rem;
+}
+
+.alerta-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #6b7280;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.btn-estado {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-pendiente {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.btn-pendiente:hover {
+  background-color: #fde68a;
+}
+
+.btn-hecho {
+  background-color: #d1fae5;
+  color: #059669;
+}
+
+.btn-hecho:hover {
+  background-color: #a7f3d0;
+}
+
+/* --- ESTILOS LOGIN Y PANEL ADMIN --- */
+.card-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10px;
+}
+
+.card-login {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.form-group input, .select-admin {
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.alert-error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.alert-exito {
+  background-color: #d1fae5;
+  color: #047857;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.admin-panel-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.grid-turnos-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* --- ESTILOS MEJORADOS BOTÓN LOGOUT Y DESPLEGABLES --- */
+.btn-logout {
+  background-color: #ffffff;
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: var(--color-primario);
+  color: #ffffff;
+}
+
+.btn-inteligente {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
+  transition: transform 0.2s;
+}
+
+.btn-inteligente:hover {
+  transform: translateY(-2px);
+}
+
+.select-turno {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: #f9fafb;
+}
+
+.select-turno:focus {
+  border-color: var(--color-primario);
+  background-color: #ffffff;
+}
+
+.selector-semana-box {
+  background-color: #f3f4f6;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* --- ESTILOS MÓDULO EVIDENCIAS FOTOGRÁFICAS --- */
+.card-form-evidencia {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.card-form-evidencia h4 {
+  margin-top: 0;
+  color: var(--color-primario);
+  margin-bottom: 15px;
+}
+
+.grid-form-evidencia {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.grid-galeria-evidencias {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card-foto-evidencia {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+}
+
+.foto-box {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #f3f4f6;
+}
+
+.foto-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge-area-foto {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.info-foto {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.autor-foto {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+.comentario-foto {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #4b5563;
+  font-style: italic;
+}
+
+.fecha-foto {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* --- BARRA DE NAVEGACIÓN CON LOGO --- */
+.navbar {
+  background-color: var(--color-primario);
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+.navbar-logo {
+  height: 40px;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-badge {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
